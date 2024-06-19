@@ -23,6 +23,9 @@ export const postJob = catchAsyncErrors(async (req, res, next) => {
     if(salaryFrom && salaryTo && fixedSalary){
         return next(new ErrorHandler("Adding both salary types are not valid", 400))
     }
+    if(salaryFrom >= salaryTo){
+        return next(new ErrorHandler("Salary From cannot be greater than Salary To or use Fixed Salary", 400))
+    }
     const postedBy = req.user._id;
     const job = await Job.create({
         title, description, category, country, city, location, fixedSalary, salaryFrom, salaryTo, postedBy
