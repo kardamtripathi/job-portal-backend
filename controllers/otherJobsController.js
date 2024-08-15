@@ -20,7 +20,7 @@ export const getOtherJobs = catchAsyncErrors(async (req, res, next) => {
                 company: result.company_name,
                 location: result.location,
                 description: result.description,
-                links: result.related_links
+                links: result.share_link
             }));
             return res.status(200).json({
                 success: true,
